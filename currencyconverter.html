@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <style>
+        body {
+            display: flex;
+            background-color: rgb(83, 9, 92);
+            justify-content: center;
+            padding-top: 10%;
+        }
+        .rupees, .dollor {
+            padding-top: 1%;
+        }
+        label {
+            color: crimson;
+            font-size: 30px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-weight: 800;
+            padding-bottom: 1%;
+        }
+        label:hover {
+            cursor: pointer;
+            color: rgb(124, 199, 49);
+            transition: 0.4s;
+            background-color: black;
+        }
+        input {
+            width: 45%;
+            height: 35px;
+            text-align: center;
+            margin-top: 2%;
+            margin-bottom: 12%;
+            font-size: 20px;
+        }
+        input:hover {
+            color: rgb(2, 2, 5);
+            background-color: rgb(239, 173, 127);
+            transition: 0.5s ease all;
+        }
+        input::placeholder {
+            margin-left: 5px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        span {
+            font-size: 80px;
+            color: crimson;
+            margin-right: 1%;
+        }
+    </style>
+</head>
+<body>
+    <div class="rupees">
+        <label>RUPEES</label>
+        <input type="text" id="rupees" placeholder="ENTER AMOUNT" oninput="convertToDollars()" ondblclick="clearInput('rupees')">
+    </div>
+    <span>=</span>
+    <div class="dollor">
+        <label>DOLLAR</label>
+        <input type="text" id="dollor" placeholder="ENTER AMOUNT" oninput="convertToRupees()" ondblclick="clearInput('dollor')"> 
+    </div>
+
+    <script>
+
+//clearinginput
+function clearInput(inputId) {
+            document.getElementById(inputId).value = "";
+        }
+
+//rupees to dollor
+        function convertToDollars() {
+            const dollarInput = document.getElementById("dollor");
+            const rupeesInput = document.getElementById("rupees");
+            const rupees = parseFloat(rupeesInput.value);
+            if (!isNaN(rupees)) {
+                dollarInput.value = (rupees / 64.80).toFixed(2);
+            } else {
+                dollarInput.value = "Invalid Input";
+            }
+        }
+//dollor to rupees
+        function convertToRupees() {
+            const rupeesInput = document.getElementById("rupees");
+            const dollarInput = document.getElementById("dollor");
+            const dollars = parseFloat(dollarInput.value);
+            if (!isNaN(dollars)) {
+                rupeesInput.value = (dollars * 64.80).toFixed(2);
+            } else {
+                rupeesInput.value = "Invalid Input";
+            }
+        }
+    </script>
+</body>
+</html>
